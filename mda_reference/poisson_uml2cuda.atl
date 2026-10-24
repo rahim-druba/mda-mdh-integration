@@ -1,0 +1,188 @@
+module Poisson2Cuda;
+
+create OUT : Cuda from IN : UML;
+
+
+helper context UML!Activity def : getEntryPoint() : UML!ActivityNode =
+    let allNodesInModel : Sequence(UML!ActivityNode) = UML!ActivityNode.allInstances() in
+    let initial : UML!ActivityNode = allNodesInModel->select(n | n.oclIsKindOf(UML!InitialNode) and n.owner = self)->first() in
+    if not initial.oclIsUndefined() then initial
+    else allNodesInModel->select(n | n.name = 'SelectNode' and n.owner = self)->first() endif;
+
+helper context UML!Pin def : safeName() : String = 
+    if self.name.oclIsUndefined() then 'temp' else self.name endif;
+
+helper context UML!ActivityNode def : toCode() : String = 
+    self.nodeCode() + self.nextCode();
+
+helper context UML!ActivityNode def : nextCode() : String =
+    if self.oclIsKindOf(UML!DecisionNode) then
+        let incEdge : UML!ActivityEdge = self.incoming->first() in
+        let prevNode : UML!ActivityNode = if incEdge.oclIsUndefined() then OclUndefined else incEdge.source endif in
+        let conditionVar : String =
+            if not prevNode.oclIsUndefined() and prevNode.oclIsKindOf(UML!Action) then
+                if not prevNode.outputValue->isEmpty() then prevNode.outputValue->first().name else 'cond' endif
+            else 'cond' endif
+        in
+        let trueEdge : UML!ActivityEdge = self.outgoing->select(e |
+            if e.guard.oclIsUndefined() then e.name = 'true'
+            else if e.guard.oclIsKindOf(UML!LiteralBoolean) then e.guard.value = true else e.name = 'true' endif endif
+        )->first() in
+        ' if (' + conditionVar + ') {\n' + (if not trueEdge.oclIsUndefined() then trueEdge.target.toCode() else '' endif) + ' }\n'
+    else
+        let flow : UML!ControlFlow = self.outgoing->select(e | e.oclIsKindOf(UML!ControlFlow))->first() in
+        if not flow.oclIsUndefined() then flow.target.toCode() else '' endif
+    endif;
+        
+
+helper context UML!ActivityNode def : nodeCode() : String =
+    if self.oclIsKindOf(UML!InitialNode) or self.oclIsKindOf(UML!ActivityFinalNode) or self.oclIsKindOf(UML!DecisionNode) then ''
+    
+    else if self.oclIsKindOf(UML!OpaqueAction) then
+        if self.name = 'SelectNode' then
+            let outs : Sequence(UML!OutputPin) = self.outputValue->asSequence() in
+            ' int ' + outs->at(1).name + ' = blockIdx.x * blockDim.x + threadIdx.x;\n' +
+            ' int ' + outs->at(2).name + ' = blockIdx.y * blockDim.y + threadIdx.y;\n'
+            
+        else if self.name = 'CheckBounds' then
+            let ins : Sequence(UML!InputPin) = self.inputValue->asSequence() in
+            let outs : Sequence(UML!OutputPin) = self.outputValue->asSequence() in
+            ' bool ' + outs->at(1).name + ' = (' + ins->at(1).name + ' >= 1 && ' + ins->at(1).name + ' < ' + ins->at(3).name + ' - 1 && ' + ins->at(2).name + ' >= 1 && ' + ins->at(2).name + ' < ' + ins->at(3).name + ' - 1);\n'
+            
+        else ' // Action: ' + self.name + '\n' endif endif
+        
+    else if self.oclIsKindOf(UML!CallOperationAction) then
+        let args : Sequence(UML!InputPin) = self.argument->asSequence() in
+        
+        if self.name = 'ReadNeighbours' then
+            let outs : Sequence(UML!OutputPin) = self.result->asSequence() in
+            ' double ' + outs->at(1).name + ' = ' + args->at(3).name + '[(' + args->at(2).name + ' - 1) * ' + args->at(4).name + ' + ' + args->at(1).name + '];\n' +
+            ' double ' + outs->at(2).name + ' = ' + args->at(3).name + '[(' + args->at(2).name + ' + 1) * ' + args->at(4).name + ' + ' + args->at(1).name + '];\n' +
+            ' double ' + outs->at(3).name + ' = ' + args->at(3).name + '[' + args->at(2).name + ' * ' + args->at(4).name + ' + (' + args->at(1).name + ' + 1)];\n' +
+            ' double ' + outs->at(4).name + ' = ' + args->at(3).name + '[' + args->at(2).name + ' * ' + args->at(4).name + ' + (' + args->at(1).name + ' - 1)];\n'
+            
+        else if self.name = 'ApplyStencil' then
+            let outs : Sequence(UML!OutputPin) = self.result->asSequence() in
+            ' int n = ' + args->at(7).name + ' * ' + args->at(8).name + ' + ' + args->at(6).name + ';\n' +
+            ' double ' + outs->at(1).name + ' = 0.25 * (' + args->at(1).name + ' + ' + args->at(2).name + ' + ' + args->at(3).name + ' + ' + args->at(4).name + ' + ' + args->at(5).name + '[n] * h * h);\n'
+            
+        else if self.name = 'StoreValue' then
+            ' ' + args->at(5).name + '[' + args->at(2).name + ' * ' + args->at(3).name + ' + ' + args->at(1).name + '] = ' + args->at(4).name + ';\n'
+            
+        else ' // Op: ' + self.name + '\n' endif endif endif
+        
+    else '' endif endif endif;
+
+helper context UML!Class def : generateKernelBody() : String =
+    let act : UML!Activity = self.getActivity() in
+    if act.oclIsUndefined() then '// ERROR: No activity'
+    else let entry : UML!ActivityNode = act.getEntryPoint() in
+    if entry.oclIsUndefined() then '// ERROR: No Entry' else entry.toCode() endif endif;
+
+-- =======================================================================
+-- ГЛОБАЛЬНЫЕ ПРАВИЛА ГЕНЕРАЦИИ (COMPONENTS -> PROGRAM)
+-- =======================================================================
+rule MainToCudaProgram {
+    from c : UML!Component (c.name = 'Main')
+    to p : Cuda!Program (
+        modules <- Sequence { m }
+    ),
+    m : Cuda!Module (
+        name <- 'MainModule',
+        kernels <- UML!Class.allInstances()->select(cl | cl.name = 'PoissonSolver'),
+        
+        buffers <- UML!Activity.allInstances()->select(a | a.name = 'MainActivity')->first().node
+            ->select(n | n.name = 'SetupGrid')
+            ->collect(n | n.outputValue)
+            ->flatten()
+            ->collect(pin | Sequence { thisModule.CreateHostBuffer(pin), thisModule.CreateDeviceBuffer(pin) })
+            ->flatten(),
+            
+        -- Вот здесь жестко фиксируем порядок: СНАЧАЛА SetupGrid (Malloc/Memcpy), ЗАТЕМ Solve (Launch)
+        steps <- let actNodes : Sequence(UML!ActivityNode) = UML!Activity.allInstances()->select(a | a.name = 'MainActivity')->first().node in
+            actNodes->select(n | n.name = 'SetupGrid')
+            ->collect(a | thisModule.MapActionToStep(a))->flatten()
+            ->union(
+                actNodes->select(n | n.name = 'Solve')
+                ->collect(a | thisModule.MapActionToStep(a))->flatten()
+            )
+    )
+}
+
+rule ClassToCudaKernel {
+    from c : UML!Class (c.name = 'PoissonSolver')
+    to k : Cuda!Kernel (
+        name <- 'iteratePoisson',
+        kernelBody <- c.generateKernelBody(),
+        params <- c.ownedAttribute->collect(a | thisModule.AttrToParam(a)),
+        blockX <- 32,
+        blockY <- 32
+    )
+}
+
+unique lazy rule CreateHostBuffer {
+    from p : UML!Pin
+    to b : Cuda!Buffer (
+        name <- 'h_' + p.safeName(),
+        location <- #host,
+        elemType <- 'double'
+    )
+}
+
+unique lazy rule CreateDeviceBuffer {
+    from p : UML!Pin
+    to b : Cuda!Buffer (
+        name <- 'd_' + p.safeName(),
+        location <- #device,
+        elemType <- 'double'
+    )
+}
+
+lazy rule AttrToParam {
+    from a : UML!Property
+    to p : Cuda!Param ( 
+        name <- a.name, 
+        type <- if a.type.name = 'Grid' then 'double*' else 'double' endif, 
+        direction <- #IN 
+    )
+}
+
+helper def : MapActionToStep(a : UML!Action) : Sequence(Cuda!Step) =
+    if a.name = 'SetupGrid' then
+        a.outputValue->collect(p | Sequence { thisModule.CreateMalloc(p), thisModule.CreateMemcpyH2D(p) })->flatten()
+    else if a.oclIsKindOf(UML!CallOperationAction) and a.name = 'Solve' then
+        Sequence { thisModule.CreateLaunch(a) }
+    else Sequence {} endif endif;
+    
+lazy rule CreateLaunch {
+    from a : UML!CallOperationAction
+    to s : Cuda!Launch (
+        kernel <- UML!Class.allInstances()->select(c | c.name = 'PoissonSolver')->first(),
+        blockX <- 32, blockY <- 32
+    )
+}
+
+lazy rule CreateMalloc {
+    from p : UML!Pin
+    to s : Cuda!Malloc (
+        buffer <- thisModule.CreateDeviceBuffer(p)
+    )
+}
+
+lazy rule CreateMemcpyH2D {
+    from p : UML!Pin
+    to s : Cuda!Memcpy (
+        kind <- #HostToDevice,
+        src <- thisModule.CreateHostBuffer(p),
+        dst <- thisModule.CreateDeviceBuffer(p)
+    )
+}
+
+lazy rule CreateMemcpyD2H {
+    from p : UML!Pin
+    to s : Cuda!Memcpy (
+        kind <- #DeviceToHost,
+        src <- thisModule.CreateDeviceBuffer(p),
+        dst <- thisModule.CreateHostBuffer(p)
+    )
+}

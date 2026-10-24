@@ -1,0 +1,31 @@
+=== MDH Poisson Convergence Test ===
+Grid: 64x64  Interior: 62x62  EPS: 1e-04  MaxIter: 3000000
+
+--- Serial Jacobi ---
+
+Serial converged!
+  Iterations        : 7700
+  Final residual    : 9.093378e-05
+  Time              : 0.111 seconds
+  Max error vs exact: 4.607714e-06
+
+--- GPU Jacobi (MDH-generated CUDA) ---
+
+GPU converged!
+  Iterations            : 7700
+  Final residual        : 9.093378e-05
+  GPU kernel time only  : 0.028 seconds  (28.232 ms)
+  GPU total wall time   : 0.066 seconds  (includes memcpy + residual)
+  Max error vs exact    : 4.607714e-06
+
+=== Comparison ===
+  Metric                            Serial CPU       MDH GPU
+  Iterations to converge                  7700          7700
+  Final residual                  9.093378e-05  9.093378e-05
+  Compute time (seconds)                 0.111         0.028
+  Max error vs exact              4.607714e-06  4.607714e-06
+  Max diff GPU vs serial                   ---  0.000000e+00
+
+  Speedup (serial / GPU kernel): 3.93x
+
+Poisson (MDH) is SUCCESSFUL! Solutions match within 1e-6.

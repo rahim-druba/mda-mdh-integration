@@ -1,0 +1,74 @@
+@startuml Component_Architecture
+title MDA <-> MDH Integration -- Component Diagram
+
+package "MDA (existing project, read-only here)" {
+  [UML Activity Diagram\n(poisson_dsc.uml)] as UML
+  [ATL Transform\n(poisson_uml2cuda.atl)] as ATL
+  [Acceleo-generated naive kernel\n(poisson_mda_original.cu)] as MDA_KERNEL
+}
+
+package "Bridge (new work)" {
+  [UML -> MDH Bridge\n(uml_to_mdh_bridge.py)] as BRIDGE
+  [MDH Spec\n(poisson_from_uml.cpp)] as SPEC
+}
+
+package "MDH (existing framework, copied in)" {
+  [MDH Framework\n(cuda_generator.hpp)] as MDH_GEN
+  [MDH-tuned kernel\n(poisson_1.cu)] as MDH_KERNEL
+}
+
+package "Benchmark (new work)" {
+  [Serial CPU Jacobi] as SERIAL
+  [3-way Convergence Harness] as HARNESS
+}
+
+[RESULTS.md] as RESULTS
+
+UML --> BRIDGE : parsed by
+ATL ..> UML : reads\n(reference only,\nnot executed here)
+note right of ATL
+  Kept only so the bridge's
+  recognized vocabulary can be
+  checked against what MDA's
+  own transform already hardcodes.
+end note
+
+BRIDGE --> SPEC : emits
+SPEC --> MDH_GEN : compiled & run by
+MDH_GEN --> MDH_KERNEL : generates
+
+MDA_KERNEL --> HARNESS : benchmarked in
+MDH_KERNEL --> HARNESS : benchmarked in
+SERIAL --> HARNESS : baseline for
+HARNESS --> RESULTS : reports speedup table
+
+@enduml
+
+@startuml Pipeline_Activity
+title UML -> MDH Bridge -- Activity Diagram (how it runs)
+
+start
+:Author UML activity diagram in Papyrus\n(SelectNode, CheckBounds, BoundsDecision,\nReadNeighbours, ApplyStencil, StoreValue);
+:Bridge parses poisson_dsc.uml\nand looks for the recognized node pattern;
+
+if (all required nodes present\nwith the expected xmi:type?) then (yes)
+  :Map SelectNode -> L(1), L(2);
+  :Map ReadNeighbours (top/bot/left/right)\n-> 5-point stencil neighborhood;
+  :Map ApplyStencil formula -> scalar_function f;
+  :Map StoreValue, no reduce loop -> result_buffer, md_hom<2,0>;
+  :Emit generated/poisson_from_uml.cpp;
+  :cmake && make -> build/poisson_from_uml;
+  :Run executable -> poisson_1.cu, poisson_2.cu;
+  :Compile benchmarks (nvcc) with matching tile -D flags;
+  :Run Serial Jacobi (CPU) to convergence;
+  :Run MDH-tuned kernel (GPU) to convergence;
+  :Run MDA naive kernel (GPU) to convergence,\nsame serial baseline, same harness;
+  :Compare iteration counts, residuals,\nmax diff, and kernel times;
+  :Record 3-way speedup table in RESULTS.md;
+else (no)
+  :Abort with a clear error --\nthe bridge refuses to guess silently;
+  end
+endif
+stop
+
+@enduml

@@ -1,0 +1,31 @@
+=== MDA Naive-GPU Convergence Test ===
+Grid: 128x128  Interior: 126x126  EPS: 1e-04  MaxIter: 3000000
+
+--- Serial Jacobi ---
+
+Serial converged!
+  Iterations        : 31000
+  Final residual    : 9.975738e-05
+  Time              : 1.763 seconds
+  Max error vs exact: 5.054026e-06
+
+--- GPU Jacobi (MDA-generated naive CUDA) ---
+
+GPU converged!
+  Iterations            : 31000
+  Final residual        : 9.975738e-05
+  GPU kernel time only  : 0.156 seconds  (156.474 ms)
+  GPU total wall time   : 0.335 seconds  (includes memcpy + residual)
+  Max error vs exact    : 5.054026e-06
+
+=== Comparison ===
+  Metric                            Serial CPU  MDA naive GPU
+  Iterations to converge                 31000         31000
+  Final residual                  9.975738e-05  9.975738e-05
+  Compute time (seconds)                 1.763         0.156
+  Max error vs exact              5.054026e-06  5.054026e-06
+  Max diff GPU vs serial                   ---  1.040834e-17
+
+  Speedup (serial / GPU kernel): 11.27x
+
+MDA naive Poisson is SUCCESSFUL! Solutions match within 1e-6.

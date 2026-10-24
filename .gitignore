@@ -1,0 +1,10 @@
+# Compiled binaries and build dir - not needed on GitHub, regenerate with the
+# commands in RESULTS.md / README.md "Run it". Keep the *source* and *log*
+# files under generated/ (poisson_1.cu, poisson_from_uml.cpp, run_output*.txt)
+# since those are the actual evidence of what the pipeline produced.
+build/
+generated/test_poisson_converge
+generated/test_poisson_converge_*
+generated/test_poisson_mda_*
+*.o
+*.a
