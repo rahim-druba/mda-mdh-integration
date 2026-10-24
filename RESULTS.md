@@ -34,7 +34,32 @@ Speedup over serial, computed from each binary's own serial measurement:
 | 128x128 | 11.27x | 11.74x | **11.24x** |
 | 256x256 | 19.19x | 22.83x | **23.32x** |
 
-**This directly answers "wouldn't MDH alone just be better than the two bridged together?"** MDH alone and Integrated differ by 0-4% across all three grid sizes - the same run-to-run noise visible in the serial baseline column, not a real performance gap. They are, within measurement noise, the same number, which is expected: see "Verification" below for why. The comparison that actually matters, and the one with a real gap, is either of the MDH-based columns against **MDA alone** - that gap grows from 1.3x at 64x64 to about 1.2-1.3x faster, and in absolute speedup-over-serial terms from 2.87x to 19.19-23.32x.
+**This directly answers "wouldn't MDH alone just be better than the two bridged together?"** The single-sample numbers above show MDH alone ahead at 128x128 and 256x256 by a small margin. A single run is not enough to tell a real effect from measurement noise, so the next section repeats each comparison several times. The comparison that actually matters, and the one with a real, repeatable gap, is either of the MDH-based columns against **MDA alone** - that gap holds at every grid size, in both the single-sample numbers above and the repeated trials below.
+
+### Repeated-trial check: is MDH alone actually faster than Integrated?
+
+Since `test_poisson_converge_<N>` (Integrated) and `test_poisson_handwritten_<N>` (MDH alone) are compiled from byte-for-byte identical CUDA source (see "Verification" below), there is no mechanism by which one could be mechanistically faster than the other - any difference has to be run-to-run jitter (GPU clock state, OS scheduling), not a real performance gap. To check that directly rather than just asserting it, both binaries were run several times in alternation at each grid size, reading only the `cudaEvent` kernel time from each run:
+
+| Grid | Trials | Integrated mean | MDH alone mean | Mean gap | Integrated faster | MDH alone faster |
+|---|---|---|---|---|---|---|
+| 64x64 | 6 | 28.00 ms | 28.25 ms | 0.9% | 4 of 6 | 2 of 6 |
+| 128x128 | 4 | 150.82 ms | 151.68 ms | 0.6% | 3 of 4 | 1 of 4 |
+| 256x256 | 4 | 1223.82 ms | 1229.92 ms | 0.5% | 2 of 4 | 2 of 4 |
+
+Raw per-run numbers (kernel time only, milliseconds):
+
+```
+64x64   Integrated: 27.849 27.872 27.863 28.162 28.183 28.090
+64x64   MDH alone : 28.212 28.406 28.236 28.372 28.165 28.082
+
+128x128 Integrated: 148.355 149.959 154.612 150.354
+128x128 MDH alone : 149.724 152.529 148.560 155.891
+
+256x256 Integrated: 1228.654 1215.642 1230.041 1220.940
+256x256 MDH alone : 1256.421 1219.849 1225.819 1217.578
+```
+
+Across all 14 paired trials, Integrated was faster 9 times and MDH alone was faster 5 times - the direction flips unpredictably, run to run, at every grid size. The mean gap at each size (0.5-0.9%) is smaller than the run-to-run spread within either binary on its own (roughly 2-4%). That is the signature of measurement noise, not a real effect: there is no grid size at which MDH alone has a repeatable advantage over Integrated.
 
 To be unambiguous about what each column is: **"MDA alone"** is Acceleo's own naive output, with no MDH involved at all. **"MDH alone"** is MDH's generator run directly from the original hand-written spec, with no UML model or bridge involved at all. **"Integrated"** is this repository's actual contribution - the UML model read by `bridge/uml_to_mdh_bridge.py`, turned into an MDH specification, and compiled through MDH's generator. "Integrated" is not "MDH operating by itself" in some separate, unrelated sense - it is the measured output of the full MDA-to-MDH pipeline this repository builds, and the table above confirms it performs identically to MDH operating completely on its own.
 

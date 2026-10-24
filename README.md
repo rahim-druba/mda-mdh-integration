@@ -69,7 +69,7 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 | 128x128 | ~1.76 s | 0.156 s | 0.150 s | 0.156 s | 11.24x |
 | 256x256 | ~28.5 s | 1.476 s | 1.239 s | 1.245 s | 23.32x |
 
-"MDH alone" and "Integrated" are tied within measurement noise at every grid size - by design, since the bridge's output and the hand-written spec compile to byte-for-byte identical CUDA source (see `RESULTS.md`, "Verification"). The real, consistent gap is either of those two against **MDA alone**.
+"MDH alone" and "Integrated" are tied within measurement noise at every grid size - by design, since the bridge's output and the hand-written spec compile to byte-for-byte identical CUDA source (see `RESULTS.md`, "Verification"). Repeated trials (`RESULTS.md`, "Repeated-trial check") confirm this directly: across 14 paired runs at three grid sizes, Integrated was faster in 9 and MDH alone in 5 - the direction flips unpredictably, with no grid size where either one has a repeatable edge. The real, consistent gap is either of those two against **MDA alone**.
 
 Full table, methodology, and discussion in `RESULTS.md`.
 
