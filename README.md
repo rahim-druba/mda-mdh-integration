@@ -6,7 +6,7 @@ A working bridge between two independent model-driven CUDA code generators, demo
 
 This repository shows that a UML model from an existing MDA (Model-Driven Architecture) toolchain can drive MDH (Multi-dimensional Homomorphisms), a separate, performance-oriented CUDA code generator, instead of MDA's own naive code generator.
 
-Both systems are real, pre-existing projects that independently generate CUDA kernels for the same computation: a 5-point Jacobi stencil solving the 2D Poisson equation. This repository adds a small bridge component that reads the UML model MDA already uses and produces an MDH specification from it. That specification is then compiled through MDH's own generator to produce a tiled, tuned CUDA kernel, and the result is benchmarked against three things: MDA's own naive kernel, MDH's own hand-written kernel (with no UML or bridge involved at all), and a serial CPU baseline. The second comparison matters because it rules out the obvious objection "wouldn't MDH alone just be better than the two bridged together?" - see `RESULTS.md` for the measured answer.
+Both systems are real, pre-existing projects that independently generate CUDA kernels for the same computation: a 5-point Jacobi stencil solving the 2D Poisson equation. This repository adds a small bridge component that reads the UML model MDA already uses and produces an MDH specification from it. That specification is then compiled through MDH's own generator to produce a tiled, tuned CUDA kernel, and the result is benchmarked against three things: MDA's own naive kernel, MDH's own hand-written kernel (with no UML or bridge involved at all), and a serial CPU baseline. The second comparison matters because it rules out the obvious objection "wouldn't MDH alone just be better than the two bridged together?" - see the Results section below for the measured answer.
 
 ## Background
 
@@ -26,7 +26,7 @@ One worked example - the 2D Poisson equation, solved with a 5-point Jacobi stenc
 3. **MDH's tuned GPU kernel, generated from the UML model.** Produced by the new bridge script, then compiled through MDH's existing generator.
 4. **A serial CPU reference implementation.** The baseline every speedup number in this repository is measured against.
 
-All four are run through the same test harness, at the same grid sizes, with the same convergence criterion, so the resulting numbers are directly comparable. See `RESULTS.md` for the full measured table.
+All four are run through the same test harness, at the same grid sizes, with the same convergence criterion, so the resulting numbers are directly comparable. Full measured results are in the Results section below.
 
 ## How the bridge works
 
@@ -41,7 +41,7 @@ All four are run through the same test harness, at the same grid sizes, with the
 
 If the pattern does not match exactly, the bridge aborts with a clear error instead of guessing.
 
-**This is a hand-written, pattern-specific translator, not a general UML-to-MDH compiler.** A different kernel shape - a different stencil, a different reduction, renamed nodes - needs a new recognizer added to `uml_to_mdh_bridge.py`, in the same way it would need a new rule added to MDA's own ATL transform. This scope limitation is intentional and is restated in `RESULTS.md`.
+**This is a hand-written, pattern-specific translator, not a general UML-to-MDH compiler.** A different kernel shape - a different stencil, a different reduction, renamed nodes - needs a new recognizer added to `uml_to_mdh_bridge.py`, in the same way it would need a new rule added to MDA's own ATL transform. This scope limitation is intentional and is restated under "Scope and limitations" below.
 
 See `diagrams/pipeline.puml` for the full component diagram (what the pieces are and how they depend on each other) and activity diagram (the bridge's step-by-step logic), written as real UML in PlantUML's text syntax.
 
@@ -59,29 +59,122 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 | `bench/test_poisson_mda.cu` | The same serial baseline and test harness as above, driving MDA's naive kernel instead. |
 | `CMakeLists.txt` | Builds the bridge's output against `mdh_framework/`. |
 | `diagrams/pipeline.puml` | Component and activity diagrams of the pipeline, in PlantUML source. |
-| `RESULTS.md` | The full measured results: serial CPU vs. MDA alone (naive GPU) vs. the integrated UML-to-MDH GPU kernel. |
 
-## Results summary
+## Results
 
-**Measured compute time:**
+Full chain run end to end: `bridge/uml_to_mdh_bridge.py` -> `cmake`/`make` -> `build/poisson_from_uml` -> `nvcc` -> benchmark binary, at three grid sizes, for three independent kernels: MDA's own naive kernel, MDH's hand-written kernel, and the bridge's integrated kernel. Raw logs for every run are kept under `generated/run_output*.txt`.
+
+### Results at a glance
+
+**Table 1: Measured compute time**
 
 | Grid | Serial CPU | MDA alone | MDH alone | Integrated |
 |---|---|---|---|---|
-| 64x64 | ~0.11 s | 0.038 s | 0.028 s | 0.028 s |
-| 128x128 | ~1.76 s | 0.156 s | 0.150 s | 0.156 s |
+| 64x64 | 0.11 s | 0.038 s | 0.028 s | 0.028 s |
+| 128x128 | 1.76 s | 0.156 s | 0.150 s | 0.156 s |
 | 256x256 | ~28.7 s | 1.476 s | 1.239 s | 1.245 s |
 
-**Integrated compared directly:**
+**Table 2: Speedup over Serial**
+
+| Grid | MDA alone | MDH alone | Integrated |
+|---|---|---|---|
+| 64x64 | 2.87x | 3.92x | 3.93x |
+| 128x128 | 11.27x | 11.74x | 11.24x |
+| 256x256 | 19.19x | 22.83x | 23.32x |
+
+**Table 3: Integrated compared directly**
 
 | Grid | Integrated vs. MDA alone | Integrated vs. MDH alone |
 |---|---|---|
 | 64x64 | 1.36x faster | 1.00x (tied) |
-| 128x128 | 1.00x (tied) | 0.96x (tied - noise) |
-| 256x256 | 1.19x faster | 1.00x (tied - noise) |
+| 128x128 | 1.00x (tied) | 0.96x (tied - see noise note) |
+| 256x256 | 1.19x faster | 1.00x (tied - see noise note) |
 
-**Verdict:** Integrated beats MDA alone at 64x64 and 256x256, ties it at 128x128, and never loses to it anywhere. Integrated is tied with MDH alone at every size - expected, since the two are compiled from byte-for-byte identical CUDA source (see `RESULTS.md`, "Verification"). That tie is a feature: it means the bridge costs nothing.
+**Verdict, in plain words:**
 
-Full tables, repeated-trial data, and discussion in `RESULTS.md`.
+- 64x64: Integrated beats MDA alone by about 1.36x. Integrated and MDH alone are tied.
+- 128x128: Integrated ties MDA alone. Integrated and MDH alone are tied.
+- 256x256: Integrated beats MDA alone by about 1.19x. Integrated and MDH alone are tied.
+
+### Legend: what "faster," "tied," and "noise" mean here
+
+- **Faster** means a real, repeatable advantage: measured more than once, same winner every time, and the gap is bigger than the normal run-to-run wobble.
+- **Tied** means the two numbers are close enough that running the same test again can flip which one looks bigger. This is expected for **MDH alone** vs. **Integrated**: those two binaries are compiled from byte-for-byte identical CUDA source (proven below), so there is no reason either one should actually run faster - any gap seen on a single run is noise, not a real difference.
+- **Noise** means ordinary measurement jitter: GPU clock/thermal state and OS scheduling nudge any timing up or down by 1-4% from run to run, even for two runs of the exact same program. It is not a mistake or a bug - it is normal for any GPU benchmark, and "Repeated trials" below measures it directly instead of assuming it.
+
+### Detailed evidence
+
+Everything below supports the tables above with the actual numbers, repeated trials, and proof that "MDH alone" and "Integrated" are the same kernel.
+
+**Method.** Three separate binaries, built from the same serial baseline code, the same convergence criterion (`EPS = 1e-4`), and the same timing method (`cudaEvent` kernel-only time). Only the GPU kernel under test differs:
+
+| Binary | GPU kernel | Source |
+|---|---|---|
+| `test_poisson_mda_<N>` | MDA alone | `bench/mda_kernel.cu`, copied verbatim from the Acceleo output (`mda_reference/poisson_mda_original.cu`). One thread per cell, no tiling, no shared memory. |
+| `test_poisson_handwritten_<N>` | MDH alone | `generated/handwritten/poisson_1.cu`, generated from the original hand-written MDH spec (`mdh_reference/poisson_handwritten.cpp`), with no UML model or bridge involved anywhere. |
+| `test_poisson_converge_<N>` | Integrated (via bridge) | `generated/poisson_1.cu`, generated by `cuda_generator.hpp` from the bridge's specification (`generated/poisson_from_uml.cpp`), which was derived from the UML model. |
+
+**Full results table.** Poisson Jacobi 2D, 5-point stencil, double precision. Compute time is the GPU-kernel-only time (`cudaEvent`); serial CPU time is measured independently inside each binary and varies by under 3% run to run from ordinary CPU scheduling noise, which is why the three "Serial CPU" values per row are close but not identical.
+
+| Grid (interior) | Iterations | Serial CPU | MDA alone | MDH alone | Integrated |
+|---|---|---|---|---|---|
+| 64x64 (62x62) | 7,700 | 0.110-0.111 s | 0.038 s | 0.028 s | 0.028 s |
+| 128x128 (126x126) | 31,000 | 1.756-1.763 s | 0.156 s | 0.150 s | 0.156 s |
+| 256x256 (254x254) | 125,000 | 28.27-29.02 s | 1.476 s | 1.239 s | 1.245 s |
+
+All nine GPU runs (three grid sizes, three kernels) converge at the identical iteration count as their own serial baseline, with the identical final residual. `Max diff GPU vs. serial` is at or below double-precision noise (approximately 2.2e-16 machine epsilon) in every run. All three kernels are numerically correct at every size tested, so the speed differences between them are real tiling effects, not correctness tradeoffs.
+
+**Repeated trials: is MDH alone actually faster than Integrated?** A single run of each binary is not enough to tell a real effect from noise, so both `test_poisson_converge_<N>` (Integrated) and `test_poisson_handwritten_<N>` (MDH alone) were run several times in alternation at each grid size, reading only the `cudaEvent` kernel time from each run:
+
+| Grid | Trials | Integrated mean | MDH alone mean | Mean gap | Integrated won | MDH alone won |
+|---|---|---|---|---|---|---|
+| 64x64 | 6 | 28.00 ms | 28.25 ms | 0.9% | 4 of 6 | 2 of 6 |
+| 128x128 | 4 | 150.82 ms | 151.68 ms | 0.6% | 3 of 4 | 1 of 4 |
+| 256x256 | 4 | 1223.82 ms | 1229.92 ms | 0.5% | 2 of 4 | 2 of 4 |
+
+Raw per-run numbers (kernel time only, milliseconds):
+
+```
+64x64   Integrated: 27.849 27.872 27.863 28.162 28.183 28.090
+64x64   MDH alone : 28.212 28.406 28.236 28.372 28.165 28.082
+
+128x128 Integrated: 148.355 149.959 154.612 150.354
+128x128 MDH alone : 149.724 152.529 148.560 155.891
+
+256x256 Integrated: 1228.654 1215.642 1230.041 1220.940
+256x256 MDH alone : 1256.421 1219.849 1225.819 1217.578
+```
+
+Across all 14 paired trials, Integrated won 9 and MDH alone won 5 - the winner flips unpredictably, run to run, at every grid size. The mean gap at each size (0.5-0.9%) is smaller than the run-to-run spread within either binary on its own (roughly 2-4%). That pattern - no consistent winner, gap smaller than the noise floor - is exactly what "tied" means in the Legend above, and exactly what is expected when two binaries share the same compiled machine code.
+
+**Verification: why MDH alone and Integrated are the same kernel.** `mdh_reference/poisson_handwritten.cpp` is the original hand-written MDH spec, copied unmodified from `mdh-cuda-stencil-kernels/kernels/poisson/spec/poisson.cpp`. Building it against the same `mdh_framework/` and running it in its own output directory produces its own `poisson_1.cu` / `poisson_2.cu`:
+
+```bash
+mkdir -p generated/handwritten
+(cd generated/handwritten && ../../build/poisson_handwritten)
+diff generated/poisson_1.cu generated/handwritten/poisson_1.cu   # exit code 0
+diff generated/poisson_2.cu generated/handwritten/poisson_2.cu   # exit code 0
+```
+
+Both diffs return zero differences. The bridge's UML-derived specification (`generated/poisson_from_uml.cpp`) and the hand-written one differ only in header comments (confirmed separately with `diff` on the two `.cpp` files); the actual buffer declarations, scalar functions, and `md_hom` call are identical. This is the mechanical reason "MDH alone" and "Integrated" are tied: there is no "two different kernels that happen to run at the same speed" here, there is one kernel, compiled twice from two spec files with identical code.
+
+To be unambiguous about what each column is: **"MDA alone"** is Acceleo's own naive output, with no MDH involved at all. **"MDH alone"** is MDH's generator run directly from the original hand-written spec, with no UML model or bridge involved at all. **"Integrated"** is this repository's actual contribution - the UML model read by `bridge/uml_to_mdh_bridge.py`, turned into an MDH specification, and compiled through MDH's generator.
+
+Raw logs: `generated/run_output_mda_{64,128,256}.txt` (MDA alone), `generated/run_output_handwritten_{64,128,256}.txt` (MDH alone), `generated/run_output_{64,128,256}.txt` (Integrated).
+
+### Discussion
+
+**Why the MDH-based kernels pull ahead of MDA as the grid grows, and why they are tied at 128x128.** MDA's naive kernel reads each of the 4 neighbors straight from global memory on every iteration. MDH's generated kernel (whether reached via the bridge or the hand-written spec - they are the same kernel) stages the tile into shared memory first. At 64x64 there are already enough cells for that to help (roughly 36 percent faster). At 128x128 MDA happens to close the gap, because `NUM_WG x NUM_WI = 128` exactly matches the naive kernel's own 32x32-block grid dimension at this size, so neither has a clear occupancy advantage. At 256x256 there is enough parallel work for MDH's shared-memory staging to pull ahead again (roughly 19-23 percent faster). This is the main quantitative case for bridging MDA into MDH rather than using MDA's own Acceleo output as-is: same diagram, same correctness, but a kernel that scales better - and a kernel that scales exactly as well as if you had written the MDH spec by hand.
+
+**Why speedup over serial grows with grid size.** At 64x64 there are only 3,844 cells, too few to keep a GPU's thousands of cores busy, so launch and memory-copy overhead eats into the win. At 256x256 (64,516 cells) there is enough parallel work that the GPU pulls far ahead. This matches the same pattern already observed in `mdh-cuda-stencil-kernels`'s own reservoir results (2.0x at 500x500, growing to 36.7x at 4000x4000). It is a property of the underlying MDH kernel, not of the bridge - the point being demonstrated is that the bridge-generated kernel behaves exactly like the hand-written one would.
+
+**Why the maximum difference between GPU and serial is exactly zero at 64x64 but approximately 1e-17 at 128/256.** Poisson's update is a pure map operation (no reduction dimension; `md_hom<2, 0>`), so there is no reason for CPU and GPU summation order to differ. Any nonzero value here is floating-point noise from how `nvcc` schedules or contracts the same arithmetic at a different problem size, not a correctness issue. 1e-17 is roughly 1/20th of one double-precision ULP.
+
+### What this proves, and what it does not
+
+**Proves:** the UML model is a usable front end for MDH's generator across a range of problem sizes, not a one-off result at a single grid size, producing a kernel that performs identically to MDH's own hand-written kernel (not merely "close to" it) and at least as fast as, and in most cases clearly faster than, MDA's own naive kernel, with a measured, growing speedup over the serial CPU baseline in every case.
+
+**Does not prove generality of the bridge itself.** It recognizes exactly one pattern - this diagram's node vocabulary. A different stencil, a different reduction, or renamed nodes needs a new recognizer in `bridge/uml_to_mdh_bridge.py`, the same cost a new UML diagram shape would impose on `poisson_uml2cuda.atl`. Generalizing the bridge to a wider class of diagrams is future work and is not attempted here.
 
 ## Reproducing the results
 
@@ -114,7 +207,7 @@ for NX in 64 128 256; do
   ./generated/test_poisson_mda_${NX}
 done
 
-# 4. MDH alone (hand-written spec) vs. serial, at the same grid sizes
+# 4. MDH alone (hand-written spec, no UML/bridge involved) vs. serial
 mkdir -p generated/handwritten
 (cd generated/handwritten && ../../build/poisson_handwritten)
 for NX in 64 128 256; do
