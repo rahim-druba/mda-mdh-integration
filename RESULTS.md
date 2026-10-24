@@ -4,19 +4,41 @@ Full chain run end to end: `bridge/uml_to_mdh_bridge.py` -> `cmake`/`make` -> `b
 
 ## Results at a glance
 
-| Grid | Serial CPU | MDA alone | MDH alone | Integrated | Verdict |
-|---|---|---|---|---|---|
-| 64x64 | 0.11 s | 0.038 s | 0.028 s | 0.028 s | Integrated is **faster than MDA alone** (about 1.36x). Integrated and MDH alone are **tied**. |
-| 128x128 | 1.76 s | 0.156 s | 0.150 s | 0.156 s | Integrated is **tied with MDA alone**. Integrated and MDH alone are **tied**. |
-| 256x256 | ~28.7 s | 1.476 s | 1.239 s | 1.245 s | Integrated is **faster than MDA alone** (about 1.19x). Integrated and MDH alone are **tied**. |
+**Table 1: Measured compute time**
+
+| Grid | Serial CPU | MDA alone | MDH alone | Integrated |
+|---|---|---|---|---|
+| 64x64 | 0.11 s | 0.038 s | 0.028 s | 0.028 s |
+| 128x128 | 1.76 s | 0.156 s | 0.150 s | 0.156 s |
+| 256x256 | ~28.7 s | 1.476 s | 1.239 s | 1.245 s |
+
+**Table 2: Speedup over Serial**
+
+| Grid | MDA alone | MDH alone | Integrated |
+|---|---|---|---|
+| 64x64 | 2.87x | 3.92x | 3.93x |
+| 128x128 | 11.27x | 11.74x | 11.24x |
+| 256x256 | 19.19x | 22.83x | 23.32x |
+
+**Table 3: Integrated compared directly**
+
+| Grid | Integrated vs. MDA alone | Integrated vs. MDH alone |
+|---|---|---|
+| 64x64 | 1.36x faster | 1.00x (tied) |
+| 128x128 | 1.00x (tied) | 0.96x (tied - see noise note) |
+| 256x256 | 1.19x faster | 1.00x (tied - see noise note) |
+
+**Verdict, in plain words:**
+
+- 64x64: Integrated beats MDA alone by about 1.36x. Integrated and MDH alone are tied.
+- 128x128: Integrated ties MDA alone. Integrated and MDH alone are tied.
+- 256x256: Integrated beats MDA alone by about 1.19x. Integrated and MDH alone are tied.
 
 ## Legend: what "faster," "tied," and "noise" mean here
 
 - **Faster** means a real, repeatable advantage: measured more than once, same winner every time, and the gap is bigger than the normal run-to-run wobble.
 - **Tied** means the two numbers are close enough that running the same test again can flip which one looks bigger. This is expected for **MDH alone** vs. **Integrated**: those two binaries are compiled from byte-for-byte identical CUDA source (proven below), so there is no reason either one should actually run faster - any gap seen on a single run is noise, not a real difference.
 - **Noise** means ordinary measurement jitter: GPU clock/thermal state and OS scheduling nudge any timing up or down by 1-4% from run to run, even for two runs of the exact same program. It is not a mistake or a bug - it is normal for any GPU benchmark, and the "Repeated trials" section below measures it directly instead of assuming it.
-
-**The bottom line:** Integrated never loses to MDA alone, and wins clearly as the grid grows. Integrated never has a real advantage or disadvantage against MDH alone, because they are the same kernel. That second point is a feature, not a weakness - it means the bridge costs nothing.
 
 ---
 
