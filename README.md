@@ -226,9 +226,29 @@ for NX in 64 128 256; do
     -DOCL_DIM_L_1=1 -DOCL_DIM_L_2=0
   ./generated/test_poisson_handwritten_${NX}
 done
+
+# 5. Verification: bridge output must be byte-for-byte identical to the hand-written spec
+diff generated/poisson_1.cu generated/handwritten/poisson_1.cu   # expect exit code 0
+diff generated/poisson_2.cu generated/handwritten/poisson_2.cu   # expect exit code 0
+
+# 6. Repeated trials: run Integrated and MDH alone several times each, alternating,
+#    at every grid size, to confirm there is no consistent winner (this is what
+#    produced the "Repeated trials" table above - 6 runs at 64x64, 4 at 128x128
+#    and 256x256, since 64x64 is fast enough to afford more samples)
+for NX in 64 128 256; do
+  if [ "$NX" = "64" ]; then TRIALS=6; else TRIALS=4; fi
+  echo "=== ${NX}x${NX}: ${TRIALS} runs each ==="
+  for i in $(seq 1 $TRIALS); do
+    a=$(./generated/test_poisson_converge_${NX} 2>&1 | grep "GPU kernel time only" | grep -oP '\d+\.\d+(?= ms)')
+    b=$(./generated/test_poisson_handwritten_${NX} 2>&1 | grep "GPU kernel time only" | grep -oP '\d+\.\d+(?= ms)')
+    echo "run $i: Integrated=${a}ms  MDH-alone=${b}ms"
+  done
+done
 ```
 
-Requirements: GCC/G++ with C++14, CMake 2.8.11 or newer, CUDA toolkit with `nvcc`, an NVIDIA GPU, Python 3.
+Running all six steps top to bottom regenerates every number in every table in this README: Table 1 and Table 2 come from steps 2-4, the Verification section from step 5, and the Repeated trials table from step 6. The exact figures will vary slightly run to run (that is the whole point of the Legend/Noise section above), but the pattern - Integrated tied with MDH alone, both ahead of or level with MDA alone - should reproduce every time.
+
+Requirements: GCC/G++ with C++14, CMake 2.8.11 or newer, CUDA toolkit with `nvcc`, an NVIDIA GPU, Python 3. Step 6's `grep -oP` needs GNU grep (the default on Linux).
 
 ## Scope and limitations
 
