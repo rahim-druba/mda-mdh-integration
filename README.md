@@ -68,15 +68,15 @@ Full chain run end to end: `bridge/uml_to_mdh_bridge.py` -> `cmake`/`make` -> `b
 
 **Table 1: Measured compute time (exact, not rounded to a shared unit)**
 
-Serial CPU time is in seconds (3 decimals, the program's own printed precision). GPU kernel time is in **milliseconds** (3 decimals), not rounded to seconds like earlier drafts of this table - at 64x64 and 128x128, two GPU times that both round to "0.028 s" or "0.156 s" in seconds turn out to be measurably different once shown in milliseconds, which is exactly why their speedups differ even when the seconds-rounded numbers looked identical.
+Each of the three binaries (`test_poisson_mda`, `test_poisson_handwritten`, `test_poisson_converge`) has its own copy of the serial Jacobi solver built in and re-measures it independently, rather than sharing one measurement across all three - so there are three separate Serial numbers per row, not one. Serial CPU time is in seconds (3 decimals, the program's own printed precision); GPU kernel time is in **milliseconds** (3 decimals), not rounded to seconds like earlier drafts of this table, because two GPU times that both round to "0.028 s" or "0.156 s" in seconds turn out to be measurably different once shown in milliseconds - which is why their speedups differ even when the seconds-rounded numbers looked identical.
 
-| Grid | Serial CPU (s) | MDA alone (ms) | MDH alone (ms) | Integrated (ms) |
-|---|---|---|---|---|
-| 64x64 | 0.110 / 0.110 / 0.111 | 38.295 | 28.157 | 28.217 |
-| 128x128 | 1.763 / 1.760 / 1.756 | 156.474 | 149.909 | 156.256 |
-| 256x256 | 28.336 / 28.270 / 29.022 | 1476.382 | 1238.524 | 1244.532 |
+| Grid | MDA alone: Serial (s) | MDA alone: GPU (ms) | MDH alone: Serial (s) | MDH alone: GPU (ms) | Integrated: Serial (s) | Integrated: GPU (ms) |
+|---|---|---|---|---|---|---|
+| 64x64 | 0.110 | 38.295 | 0.110 | 28.157 | 0.111 | 28.217 |
+| 128x128 | 1.763 | 156.474 | 1.760 | 149.909 | 1.756 | 156.256 |
+| 256x256 | 28.336 | 1476.382 | 28.270 | 1238.524 | 29.022 | 1244.532 |
 
-Serial CPU time is listed as three separate numbers per row (MDA alone's run / MDH alone's run / Integrated's run, in that order) because each binary re-measures its own serial baseline independently - they are close but not identical, which is itself part of the measurement noise discussed below.
+Each pair of columns (Serial, GPU) comes from running one single binary once - for example, the 64x64 row's "MDH alone" pair (0.110 s, 28.157 ms) are both measured in the same run of `test_poisson_handwritten_64`, independently of the other two binaries' runs.
 
 **Table 2: Speedup over Serial**
 
