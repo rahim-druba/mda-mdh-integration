@@ -19,19 +19,21 @@ Three separate binaries, built from the same serial baseline code, the same conv
 
 Poisson Jacobi 2D, 5-point stencil, double precision.
 
-| Grid (interior) | Iterations | Serial CPU | MDA naive GPU | MDH tuned GPU (bridge) | Speedup: Serial to MDA | Speedup: Serial to MDH | MDH vs. MDA |
+| Grid (interior) | Iterations | Serial CPU | MDA alone (naive GPU) | Integrated: UML -> MDH (tuned GPU, via bridge) | Speedup: Serial to MDA alone | Speedup: Serial to Integrated | Integrated vs. MDA alone |
 |---|---|---|---|---|---|---|---|
 | 64x64 (62x62) | 7,700 | 0.111 s | 0.038 s | 0.028 s | 2.87x | **3.93x** | 1.36x faster |
 | 128x128 (126x126) | 31,000 | 1.76 s | 0.156 s | 0.156 s | 11.27x | **11.24x** | ~tied |
 | 256x256 (254x254) | 125,000 | ~28.7 s | 1.476 s | 1.245 s | 19.19x | **23.32x** | 1.19x faster |
 
-Raw logs: `generated/run_output_mda_{64,128,256}.txt` (MDA naive), `generated/run_output_{64,128,256}.txt` (MDH tuned).
+To be unambiguous about what each column actually is: **"MDA alone"** is Acceleo's own naive output, with no MDH involved at all. **"Integrated"** is this repository's actual contribution - the UML model read by `bridge/uml_to_mdh_bridge.py`, turned into an MDH specification, and compiled through MDH's generator. It is not "MDH operating by itself" in some separate, unrelated sense; it is the measured output of the full MDA-to-MDH pipeline this repository builds.
+
+Raw logs: `generated/run_output_mda_{64,128,256}.txt` (MDA alone), `generated/run_output_{64,128,256}.txt` (Integrated).
 
 All six GPU runs (three grid sizes, two kernels) converge at the identical iteration count as the serial baseline, with the identical final residual. `Max diff GPU vs. serial` is at or below double-precision noise (approximately 2.2e-16 machine epsilon) in every run. Both kernels are numerically correct at every size tested, so the speed difference between them is a real tiling effect, not a correctness tradeoff.
 
 ## Discussion
 
-### Why MDH pulls ahead as the grid grows, and why it is tied at 128x128
+### Why the integrated kernel pulls ahead as the grid grows, and why it is tied at 128x128
 
 MDA's naive kernel reads each of the 4 neighbors straight from global memory on every iteration. MDH's generated kernel stages the tile into shared memory first. At 64x64 there are already enough cells for that to help (36 percent faster). At 128x128 the two happen to be tied, because `NUM_WG x NUM_WI = 128` exactly matches the naive kernel's own 32x32-block grid dimension at this size, so neither has a clear occupancy advantage. At 256x256 there is enough parallel work for MDH's shared-memory staging to pull ahead again (19 percent faster).
 
@@ -61,7 +63,7 @@ python3 bridge/uml_to_mdh_bridge.py
 mkdir -p build && cd build && cmake .. && make && cd ..
 (cd generated && ../build/poisson_from_uml)   # -> poisson_1.cu, poisson_2.cu
 
-# 2. MDH tuned GPU vs. serial, at each grid size
+# 2. Integrated (UML -> MDH) GPU vs. serial, at each grid size
 for NX in 64 128 256; do
   NI=$((NX-2)); NWG=$((NX/16))
   nvcc bench/test_poisson_converge.cu generated/poisson_1.cu \

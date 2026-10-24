@@ -57,11 +57,11 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 | `bench/test_poisson_mda.cu` | The same serial baseline and test harness as above, driving MDA's naive kernel instead. |
 | `CMakeLists.txt` | Builds the bridge's output against `mdh_framework/`. |
 | `diagrams/pipeline.puml` | Component and activity diagrams of the pipeline, in PlantUML source. |
-| `RESULTS.md` | The full measured results: serial CPU vs. MDA naive GPU vs. MDH tuned GPU. |
+| `RESULTS.md` | The full measured results: serial CPU vs. MDA alone (naive GPU) vs. the integrated UML-to-MDH GPU kernel. |
 
 ## Results summary
 
-| Grid | Serial CPU | MDA naive GPU | MDH tuned GPU | Speedup (Serial to MDH) |
+| Grid | Serial CPU | MDA alone (naive GPU) | Integrated: UML -> MDH (tuned GPU) | Speedup (Serial to Integrated) |
 |---|---|---|---|---|
 | 64x64 | 0.111 s | 0.038 s | 0.028 s | 3.93x |
 | 128x128 | 1.76 s | 0.156 s | 0.156 s | 11.24x |
@@ -79,7 +79,7 @@ python3 bridge/uml_to_mdh_bridge.py
 mkdir -p build && cd build && cmake .. && make && cd ..
 (cd generated && ../build/poisson_from_uml)   # -> poisson_1.cu, poisson_2.cu
 
-# 2. MDH tuned GPU vs. serial, at each grid size
+# 2. Integrated (UML -> MDH) GPU vs. serial, at each grid size
 for NX in 64 128 256; do
   NI=$((NX-2)); NWG=$((NX/16))
   nvcc bench/test_poisson_converge.cu generated/poisson_1.cu \
