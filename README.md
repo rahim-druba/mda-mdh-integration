@@ -63,15 +63,15 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 
 ## Results summary
 
-| Grid | Serial CPU | MDA alone | MDH alone (hand-written) | Integrated (bridge) | Speedup (Serial to Integrated) |
+| Grid | Serial CPU | MDA alone | MDH alone | Integrated | Verdict |
 |---|---|---|---|---|---|
-| 64x64 | ~0.11 s | 0.038 s | 0.028 s | 0.028 s | 3.93x |
-| 128x128 | ~1.76 s | 0.156 s | 0.150 s | 0.156 s | 11.24x |
-| 256x256 | ~28.5 s | 1.476 s | 1.239 s | 1.245 s | 23.32x |
+| 64x64 | ~0.11 s | 0.038 s | 0.028 s | 0.028 s | Integrated **faster than MDA alone** (~1.36x). **Tied** with MDH alone. |
+| 128x128 | ~1.76 s | 0.156 s | 0.150 s | 0.156 s | Integrated **tied** with MDA alone. **Tied** with MDH alone. |
+| 256x256 | ~28.7 s | 1.476 s | 1.239 s | 1.245 s | Integrated **faster than MDA alone** (~1.19x). **Tied** with MDH alone. |
 
-"MDH alone" and "Integrated" are tied within measurement noise at every grid size - by design, since the bridge's output and the hand-written spec compile to byte-for-byte identical CUDA source (see `RESULTS.md`, "Verification"). Repeated trials (`RESULTS.md`, "Repeated-trial check") confirm this directly: across 14 paired runs at three grid sizes, Integrated was faster in 9 and MDH alone in 5 - the direction flips unpredictably, with no grid size where either one has a repeatable edge. The real, consistent gap is either of those two against **MDA alone**.
+**Faster** means a real, repeatable advantage (confirmed by repeated runs). **Tied** means the two numbers are close enough to flip which one looks bigger if you run the test again - expected for MDH alone vs. Integrated, since those two are compiled from byte-for-byte identical CUDA source (see `RESULTS.md`, "Verification"). Integrated never loses to MDA alone and is never meaningfully different from MDH alone - which is the point: the bridge costs nothing and MDA's own naive output is what it clearly improves on.
 
-Full table, methodology, and discussion in `RESULTS.md`.
+Full table, repeated-trial data, and discussion in `RESULTS.md`.
 
 ## Reproducing the results
 
