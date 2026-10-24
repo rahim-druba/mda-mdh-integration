@@ -238,21 +238,123 @@ Requirements: GCC/G++ with C++14, CMake 2.8.11 or newer, CUDA toolkit with `nvcc
 
 ## Diagrams
 
-Three real UML diagrams. Source is `diagrams/pipeline.puml` (PlantUML text); the images below are rendered from that source and committed as `.svg` files under `diagrams/rendered/` so they display directly on this page - GitHub does not execute PlantUML on its own, so the source alone would not have shown a picture here.
+Three diagrams of the same system, in two forms. The versions below are written in **Mermaid**, embedded directly as fenced code blocks, because GitHub renders Mermaid natively with an interactive zoom/pan/fullscreen toolbar - a plain embedded image (SVG or PNG, regardless of what generated it) never gets that toolbar, it only shows as a flat picture. For the exact UML2 notation (proper lollipop/socket interface circles, `«component»` semantics), `diagrams/pipeline.puml` has the same three diagrams written in PlantUML, with rendered, non-interactive SVGs committed under `diagrams/rendered/`.
 
-**Component diagram** - the full picture of the integrated model in one view: MDA's UML model and naive kernel, the bridge, MDH's two specs (hand-written and bridge-derived) feeding the same generator, the two generated kernels, the benchmark harness, and where the results come from. Uses standard UML component notation: components as labeled boxes, and the two real interfaces in this system (the UML node pattern the bridge reads, and the MDH spec interface both specs satisfy) drawn as proper lollipop/socket interface circles, not just arrows.
+**Component diagram** - the full picture of the integrated model in one view: MDA's UML model and naive kernel, the bridge, MDH's two specs (hand-written and bridge-derived) feeding the same generator, the two generated kernels, the benchmark harness, and where the results come from.
 
-![Component diagram](diagrams/rendered/Component_Architecture.svg)
+```mermaid
+flowchart TD
+    subgraph MDA["MDA (existing project, read-only here)"]
+        UML["UML Activity Diagram<br/>poisson_dsc.uml"]
+        ATL["ATL Transform<br/>poisson_uml2cuda.atl"]
+        MDA_KERNEL["MDA Naive Kernel<br/>mda_kernel.cu"]
+    end
+
+    subgraph BRIDGEGRP["Bridge (new work)"]
+        BRIDGE["UML-to-MDH Bridge<br/>uml_to_mdh_bridge.py"]
+    end
+
+    subgraph MDHGRP["MDH (framework + two specs)"]
+        SPEC_HW["MDH Hand-written Spec<br/>poisson_handwritten.cpp"]
+        SPEC_BRIDGE["Bridge-derived Spec<br/>poisson_from_uml.cpp"]
+        GENERATOR["MDH Generator<br/>cuda_generator.hpp"]
+    end
+
+    subgraph KERNELS["Generated GPU Kernels"]
+        K_MDH["MDH-alone Kernel"]
+        K_INTEGRATED["Integrated Kernel"]
+    end
+
+    subgraph BENCH["Benchmark (new work)"]
+        SERIAL["Serial CPU Baseline"]
+        HARNESS["3-way Benchmark Harness"]
+    end
+
+    RESULTS["README.md Results section"]
+
+    ATL -. "reads, reference only" .-> UML
+    UML -->|parsed by| BRIDGE
+    BRIDGE -->|emits| SPEC_BRIDGE
+
+    SPEC_HW -->|built and run by| GENERATOR
+    SPEC_BRIDGE -->|built and run by| GENERATOR
+    GENERATOR -->|generates| K_MDH
+    GENERATOR -->|generates| K_INTEGRATED
+
+    MDA_KERNEL -->|benchmarked in| HARNESS
+    K_MDH -->|benchmarked in| HARNESS
+    K_INTEGRATED -->|benchmarked in| HARNESS
+    SERIAL -->|baseline for| HARNESS
+    HARNESS -->|reports 3-way table| RESULTS
+```
 
 **Activity diagram** - the bridge's own internal decision logic: how it reads the UML model, checks the node pattern, maps each recognized node to an MDH construct, and what it does if the pattern does not match.
 
-![Activity diagram](diagrams/rendered/Pipeline_Activity.svg)
+```mermaid
+flowchart TD
+    A["Author UML activity diagram in Papyrus<br/>SelectNode, CheckBounds, BoundsDecision,<br/>ReadNeighbours, ApplyStencil, StoreValue"] --> B["Bridge parses poisson_dsc.uml<br/>and looks for the recognized node pattern"]
+    B --> C{"All required nodes present<br/>with the expected xmi:type?"}
+    C -->|yes| D["Map SelectNode to L(1), L(2)"]
+    D --> E["Map ReadNeighbours top/bot/left/right<br/>to 5-point stencil neighborhood"]
+    E --> F["Map ApplyStencil formula<br/>to scalar_function f"]
+    F --> G["Map StoreValue, no reduce loop,<br/>to result_buffer, md_hom&lt;2,0&gt;"]
+    G --> H["Emit generated/poisson_from_uml.cpp"]
+    H --> I["cmake and make"]
+    I --> J["Run executable<br/>writes poisson_1.cu, poisson_2.cu"]
+    J --> K["Compile benchmarks with nvcc"]
+    K --> L["Run Serial Jacobi CPU to convergence"]
+    L --> M["Run MDH-tuned kernel GPU to convergence"]
+    M --> N["Run MDA naive kernel GPU to convergence"]
+    N --> O["Compare iterations, residuals,<br/>max diff, and kernel times"]
+    O --> P["Record 3-way speedup table in README.md"]
+    C -->|no| Q["Abort with a clear error<br/>the bridge refuses to guess silently"]
+```
 
-**Sequence diagram** - how one full run actually happens over time: a researcher triggers the bridge, which talks to the UML model; the bridge's output is built by MDH's generator; the resulting kernel is compiled into a benchmark binary that runs the serial baseline and the GPU kernel and reports a speedup. Drawn as a standard UML sequence diagram - participant lifelines across the top, dashed lifelines running down the page for the duration each participant is involved, activation bars marking when each one is actually doing work, solid arrows for calls and dashed arrows for returns.
+**Sequence diagram** - how one full run actually happens over time: a researcher triggers the bridge, which talks to the UML model; the bridge's output is built by MDH's generator; the resulting kernel is compiled into a benchmark binary that runs the serial baseline and the GPU kernel and reports a speedup.
 
-![Sequence diagram](diagrams/rendered/Pipeline_Sequence.svg)
+```mermaid
+sequenceDiagram
+    actor Researcher
+    participant UML as UML Model
+    participant Bridge
+    participant Generator as MDH Generator
+    participant Benchmark as Benchmark Binary
+    participant Serial as Serial CPU Baseline
+    participant GPU
 
-Together, these three answer "what is the final integrated model" from three different angles: what the pieces are and how they connect (Component), what the bridge itself does step by step (Activity), and what happens, in order, when the whole thing runs (Sequence). To regenerate the images after editing `diagrams/pipeline.puml`, download `plantuml.jar` from the [PlantUML releases page](https://github.com/plantuml/plantuml/releases) and run `java -jar plantuml.jar -tsvg -o diagrams/rendered diagrams/pipeline.puml`.
+    Researcher->>Bridge: run uml_to_mdh_bridge.py
+    activate Bridge
+    Bridge->>UML: parse poisson_dsc.uml
+    activate UML
+    UML-->>Bridge: node list (SelectNode, ReadNeighbours, ...)
+    deactivate UML
+    Bridge->>Bridge: verify recognized pattern
+    Bridge->>Bridge: emit poisson_from_uml.cpp
+    deactivate Bridge
+
+    Researcher->>Generator: cmake, make, run poisson_from_uml
+    activate Generator
+    Generator-->>Researcher: poisson_1.cu, poisson_2.cu
+    deactivate Generator
+
+    Researcher->>Benchmark: nvcc compile (test plus kernel)
+    activate Benchmark
+    Benchmark->>Serial: run serial Jacobi to convergence
+    activate Serial
+    Serial-->>Benchmark: iterations, time, residual
+    deactivate Serial
+
+    Benchmark->>GPU: launch kernel, iterate to convergence
+    activate GPU
+    GPU-->>Benchmark: iterations, time, residual
+    deactivate GPU
+
+    Benchmark->>Benchmark: compute speedup = serial time / GPU time
+    Benchmark-->>Researcher: print comparison table
+    deactivate Benchmark
+```
+
+Together, these three answer "what is the final integrated model" from three different angles: what the pieces are and how they connect (Component), what the bridge itself does step by step (Activity), and what happens, in order, when the whole thing runs (Sequence). The PlantUML source (`diagrams/pipeline.puml`) and its rendered SVGs (`diagrams/rendered/`) are kept alongside these as the strict-notation reference copy; regenerate them after editing the source with `java -jar plantuml.jar -tsvg -o diagrams/rendered diagrams/pipeline.puml`.
 
 ## Author
 
