@@ -1,4 +1,5 @@
 @startuml Component_Architecture
+!pragma layout smetana
 title MDA <-> MDH Integration - Full Component Architecture (final integrated model)
 skinparam componentStyle uml2
 
