@@ -50,6 +50,7 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 |---|---|
 | `mda_reference/` | Copies of the UML model, the ATL transform, and MDA's own naive-kernel output. Reference material, not executed here except where noted. |
 | `mdh_framework/` | Copy of the MDH generator core (`md_hom_generator.hpp`, headers, sources). |
+| `mdh_reference/poisson_handwritten.cpp` | The original hand-written MDH spec, copied unmodified, built as a separate target to verify the bridge's output byte-for-byte. |
 | `bridge/uml_to_mdh_bridge.py` | The UML-to-MDH-specification translator. |
 | `generated/` | Output of running the pipeline: the bridge's specification, the generated kernels, and benchmark logs. |
 | `bench/test_poisson_converge.cu` | MDH's own convergence test, parameterized for grid size. |

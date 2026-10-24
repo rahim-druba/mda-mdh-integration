@@ -6,5 +6,9 @@ build/
 generated/test_poisson_converge
 generated/test_poisson_converge_*
 generated/test_poisson_mda_*
+# Byte-for-byte identical to generated/poisson_1.cu / poisson_2.cu (see
+# RESULTS.md "Verification") - not committed since it would just duplicate
+# files already in the repo. Regenerate with the commands in that section.
+generated/handwritten/
 *.o
 *.a

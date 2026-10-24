@@ -31,6 +31,33 @@ Raw logs: `generated/run_output_mda_{64,128,256}.txt` (MDA alone), `generated/ru
 
 All six GPU runs (three grid sizes, two kernels) converge at the identical iteration count as the serial baseline, with the identical final residual. `Max diff GPU vs. serial` is at or below double-precision noise (approximately 2.2e-16 machine epsilon) in every run. Both kernels are numerically correct at every size tested, so the speed difference between them is a real tiling effect, not a correctness tradeoff.
 
+## Verification: the bridge's output equals the hand-written MDH spec
+
+A natural question: how do we know the "Integrated" column is really measuring
+MDH's own generator, and not some weaker stand-in? `mdh_reference/poisson_handwritten.cpp`
+is the original hand-written MDH spec, copied unmodified from
+`mdh-cuda-stencil-kernels/kernels/poisson/spec/poisson.cpp`. Building it against the
+same `mdh_framework/` and running it in its own output directory produces its own
+`poisson_1.cu` / `poisson_2.cu`:
+
+```bash
+mkdir -p generated/handwritten
+(cd generated/handwritten && ../../build/poisson_handwritten)
+diff generated/poisson_1.cu generated/handwritten/poisson_1.cu   # exit code 0
+diff generated/poisson_2.cu generated/handwritten/poisson_2.cu   # exit code 0
+```
+
+Both diffs return zero differences. The bridge's UML-derived specification
+(`generated/poisson_from_uml.cpp`) and the hand-written one differ only in header
+comments (confirmed separately with `diff` on the two `.cpp` files); the actual
+buffer declarations, scalar functions, and `md_hom` call are identical. That is
+why there is no separate "MDH alone" row in the results table above: a kernel
+generated from the hand-written spec compiles to the exact same CUDA source as
+the one in the "Integrated" column, so benchmarking it again would reproduce the
+same numbers within measurement noise, not provide new information. The
+"Integrated" column's performance **is** MDH's own generator's performance -
+confirmed by identical output, not inferred from similar file sizes or timings.
+
 ## Discussion
 
 ### Why the integrated kernel pulls ahead as the grid grows, and why it is tied at 128x128
