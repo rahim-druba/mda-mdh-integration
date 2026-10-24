@@ -13,3 +13,6 @@ generated/test_poisson_handwritten_*
 generated/handwritten/
 *.o
 *.a
+
+# Chat history / transcript files never go to GitHub - local record only.
+chathistory*.md
