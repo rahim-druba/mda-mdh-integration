@@ -1,30 +1,40 @@
 @startuml Component_Architecture
-title MDA <-> MDH Integration -- Component Diagram
+title MDA <-> MDH Integration - Full Component Architecture (final integrated model)
+skinparam componentStyle uml2
 
 package "MDA (existing project, read-only here)" {
   [UML Activity Diagram\n(poisson_dsc.uml)] as UML
   [ATL Transform\n(poisson_uml2cuda.atl)] as ATL
-  [Acceleo-generated naive kernel\n(poisson_mda_original.cu)] as MDA_KERNEL
+  [MDA Naive Kernel\n(mda_kernel.cu)] as MDA_KERNEL
 }
 
 package "Bridge (new work)" {
-  [UML -> MDH Bridge\n(uml_to_mdh_bridge.py)] as BRIDGE
-  [MDH Spec\n(poisson_from_uml.cpp)] as SPEC
+  [UML-to-MDH Bridge\n(uml_to_mdh_bridge.py)] as BRIDGE
 }
 
-package "MDH (existing framework, copied in)" {
-  [MDH Framework\n(cuda_generator.hpp)] as MDH_GEN
-  [MDH-tuned kernel\n(poisson_1.cu)] as MDH_KERNEL
+package "MDH (framework + two specs)" {
+  [MDH Hand-written Spec\n(poisson_handwritten.cpp)] as SPEC_HW
+  [Bridge-derived Spec\n(poisson_from_uml.cpp)] as SPEC_BRIDGE
+  [MDH Generator\n(cuda_generator.hpp)] as GENERATOR
+}
+
+package "Generated GPU Kernels" {
+  [MDH-alone Kernel\n(poisson_1.cu, from SPEC_HW)] as K_MDH
+  [Integrated Kernel\n(poisson_1.cu, from SPEC_BRIDGE)] as K_INTEGRATED
 }
 
 package "Benchmark (new work)" {
-  [Serial CPU Jacobi] as SERIAL
-  [3-way Convergence Harness] as HARNESS
+  [Serial CPU Baseline] as SERIAL
+  [3-way Benchmark Harness\n(test_poisson_mda / _handwritten / _converge)] as HARNESS
 }
 
-[RESULTS.md] as RESULTS
+[README.md "Results" section] as RESULTS
 
-UML --> BRIDGE : parsed by
+() "UML node pattern" as NodePattern
+() "MDH spec interface" as SpecIface
+
+UML -- NodePattern
+BRIDGE ..> NodePattern : reads / requires
 ATL ..> UML : reads\n(reference only,\nnot executed here)
 note right of ATL
   Kept only so the bridge's
@@ -33,19 +43,32 @@ note right of ATL
   own transform already hardcodes.
 end note
 
-BRIDGE --> SPEC : emits
-SPEC --> MDH_GEN : compiled & run by
-MDH_GEN --> MDH_KERNEL : generates
+BRIDGE --> SPEC_BRIDGE : emits
+
+SPEC_HW -- SpecIface
+SPEC_BRIDGE -- SpecIface
+SpecIface )- GENERATOR : built & run by
+
+GENERATOR --> K_MDH : generates
+GENERATOR --> K_INTEGRATED : generates
+
+note bottom of K_INTEGRATED
+  Byte-for-byte identical source
+  to K_MDH (verified with diff) -
+  same kernel, two different specs.
+end note
 
 MDA_KERNEL --> HARNESS : benchmarked in
-MDH_KERNEL --> HARNESS : benchmarked in
+K_MDH --> HARNESS : benchmarked in
+K_INTEGRATED --> HARNESS : benchmarked in
 SERIAL --> HARNESS : baseline for
-HARNESS --> RESULTS : reports speedup table
+
+HARNESS --> RESULTS : reports 3-way speedup table
 
 @enduml
 
 @startuml Pipeline_Activity
-title UML -> MDH Bridge -- Activity Diagram (how it runs)
+title UML -> MDH Bridge - Activity Diagram (the bridge's own logic)
 
 start
 :Author UML activity diagram in Papyrus\n(SelectNode, CheckBounds, BoundsDecision,\nReadNeighbours, ApplyStencil, StoreValue);
@@ -64,11 +87,63 @@ if (all required nodes present\nwith the expected xmi:type?) then (yes)
   :Run MDH-tuned kernel (GPU) to convergence;
   :Run MDA naive kernel (GPU) to convergence,\nsame serial baseline, same harness;
   :Compare iteration counts, residuals,\nmax diff, and kernel times;
-  :Record 3-way speedup table in RESULTS.md;
+  :Record 3-way speedup table in README.md;
 else (no)
   :Abort with a clear error --\nthe bridge refuses to guess silently;
   end
 endif
 stop
+
+@enduml
+
+@startuml Pipeline_Sequence
+title MDA <-> MDH Integration - Full Pipeline Sequence (one end-to-end run)
+
+actor Researcher
+participant "UML Model\n(poisson_dsc.uml)" as UML
+participant "Bridge\n(uml_to_mdh_bridge.py)" as Bridge
+participant "MDH Generator\n(cuda_generator.hpp)" as Generator
+participant "Benchmark Binary\n(nvcc-built)" as Benchmark
+participant "Serial CPU\nBaseline" as Serial
+participant "GPU" as GPU
+
+Researcher -> Bridge : run uml_to_mdh_bridge.py
+activate Bridge
+Bridge -> UML : parse poisson_dsc.uml
+activate UML
+UML --> Bridge : node list\n(SelectNode, ReadNeighbours, ...)
+deactivate UML
+Bridge -> Bridge : verify recognized pattern\n(abort if mismatched)
+Bridge -> Bridge : emit poisson_from_uml.cpp
+deactivate Bridge
+
+Researcher -> Generator : cmake && make &&\nrun poisson_from_uml
+activate Generator
+Generator -> Generator : build md_hom spec,\nemit tiled kernel text
+Generator --> Researcher : poisson_1.cu, poisson_2.cu
+deactivate Generator
+
+Researcher -> Benchmark : nvcc compile\n(test harness + kernel)
+activate Benchmark
+Benchmark -> Serial : run serial Jacobi\nto convergence
+activate Serial
+Serial --> Benchmark : iterations, time, residual
+deactivate Serial
+
+Benchmark -> GPU : launch kernel,\niterate to convergence
+activate GPU
+GPU --> Benchmark : iterations, time, residual
+deactivate GPU
+
+Benchmark -> Benchmark : speedup = serial time /\nGPU kernel time
+Benchmark --> Researcher : print comparison table
+deactivate Benchmark
+
+note over Researcher, GPU
+  Repeated for all three kernels (MDA alone,
+  MDH alone, Integrated) and all three grid
+  sizes (64, 128, 256) to produce the full
+  results table in README.md.
+end note
 
 @enduml

@@ -238,7 +238,13 @@ Requirements: GCC/G++ with C++14, CMake 2.8.11 or newer, CUDA toolkit with `nvcc
 
 ## Diagrams
 
-`diagrams/pipeline.puml` contains a Component diagram and an Activity diagram, written in PlantUML's text syntax and derived directly from the structure and steps described in this document. It is committed as source, not a rendered image. View it with any PlantUML renderer - the PlantUML VS Code extension, plantuml.com/plantuml, or `plantuml diagrams/pipeline.puml` locally.
+`diagrams/pipeline.puml` contains three real UML diagrams, written in PlantUML's text syntax and derived directly from the structure and steps described in this document. It is committed as source, not a rendered image - view it with any PlantUML renderer (the PlantUML VS Code extension, plantuml.com/plantuml, or `plantuml diagrams/pipeline.puml` locally) to see the picture.
+
+- **Component diagram** - the full picture of the integrated model in one view: MDA's UML model and naive kernel, the bridge, MDH's two specs (hand-written and bridge-derived) feeding the same generator, the two generated kernels, the benchmark harness, and where the results come from. Uses standard UML component notation: components as labeled boxes, and the two real interfaces in this system (the UML node pattern the bridge reads, and the MDH spec interface both specs satisfy) drawn as proper lollipop/socket interface circles, not just arrows.
+- **Activity diagram** - the bridge's own internal decision logic: how it reads the UML model, checks the node pattern, maps each recognized node to an MDH construct, and what it does if the pattern does not match.
+- **Sequence diagram** - how one full run actually happens over time: a researcher triggers the bridge, which talks to the UML model; the bridge's output is built by MDH's generator; the resulting kernel is compiled into a benchmark binary that runs the serial baseline and the GPU kernel and reports a speedup. Drawn as a standard UML sequence diagram - participant lifelines across the top, dashed lifelines running down the page for the duration each participant is involved, activation bars marking when each one is actually doing work, solid arrows for calls and dashed arrows for returns.
+
+Together, these three answer "what is the final integrated model" from three different angles: what the pieces are and how they connect (Component), what the bridge itself does step by step (Activity), and what happens, in order, when the whole thing runs (Sequence).
 
 ## Author
 
