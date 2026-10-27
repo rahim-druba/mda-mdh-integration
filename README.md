@@ -57,6 +57,9 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 | `bench/test_poisson_converge.cu` | MDH's own convergence test, parameterized for grid size. |
 | `bench/mda_kernel.cu` | MDA's naive kernel, extracted verbatim from the Acceleo output, with its grid size made overridable. |
 | `bench/test_poisson_mda.cu` | The same serial baseline and test harness as above, driving MDA's naive kernel instead. |
+| `bench/bench_gpu_sweep_mda.cu`, `bench/bench_gpu_sweep_mdh.cu` | GPU-only harnesses used by the block-size sweep below; same kernels as above, but the CUDA block shape is overridable at compile time instead of fixed. |
+| `bench/serial_cache_gen.cc`, `bench/serial_cache_NX*.txt` | One-time-per-grid-size serial baseline, cached so the sweep does not re-run the O(N^4) serial solver for every block configuration. |
+| `bench/run_block_sweep.sh`, `bench/run_block_sweep_partial.sh` | Driver scripts for the block-size sweep; write `bench/sweep_results*.csv` and `bench/sweep*log.txt`. |
 | `CMakeLists.txt` | Builds the bridge's output against `mdh_framework/`. |
 | `diagrams/pipeline.puml` | Component and activity diagrams of the pipeline, in PlantUML source. |
 
@@ -179,6 +182,43 @@ Raw logs: `generated/run_output_mda_{64,128,256}.txt` (MDA alone), `generated/ru
 **Proves:** the UML model is a usable front end for MDH's generator across a range of problem sizes, not a one-off result at a single grid size, producing a kernel that performs identically to MDH's own hand-written kernel (not merely "close to" it) and at least as fast as, and in most cases clearly faster than, MDA's own naive kernel, with a measured, growing speedup over the serial CPU baseline in every case.
 
 **Does not prove generality of the bridge itself.** It recognizes exactly one pattern - this diagram's node vocabulary. A different stencil, a different reduction, or renamed nodes needs a new recognizer in `bridge/uml_to_mdh_bridge.py`, the same cost a new UML diagram shape would impose on `poisson_uml2cuda.atl`. Generalizing the bridge to a wider class of diagrams is future work and is not attempted here.
+
+## Block-size sweep: larger grids, varying tile shapes
+
+Separate from the fixed-block-size results above, a second sweep tests four CUDA block (tile) shapes - 32x32, 16x32, 16x16, and 16x8 - across five grid sizes (64 through 1024), for the same three kernels (MDA alone, MDH alone, Integrated). It uses a different harness (`bench/bench_gpu_sweep_mda.cu`, `bench/bench_gpu_sweep_mdh.cu`) that overrides the block shape directly at compile time, rather than the single hand-tuned configuration used above - so these speedup numbers are a separate tuning study, not directly comparable row-for-row to Table 2's numbers at the same grid size.
+
+**Error column.** `Max error vs. exact` is the largest pointwise difference between the GPU's converged solution and the problem's known analytic solution u(x,y) = x(1-x)y(1-y), taken over every interior grid point. It is the same value for all three kernels at a given (N, block) pair, since all three converge to the same residual (EPS = 1e-4) - it reflects the Jacobi method's discretization error at that grid resolution, not a difference between kernels or a GPU-vs-serial correctness gap (that comparison is the ~1e-16-level "Max diff GPU vs. serial" discussed above).
+
+**Status: 51 of 60 planned data points measured.** The remaining 9 (block 16x32, 16x16, and 16x8, each at N=1024) are missing because a GPU run stalled mid-sweep and had to be force-killed, which corrupted the CUDA context; the GPU could not run any CUDA program afterward. These rows will be filled in once the GPU is reset or rebooted - see `bench/run_block_sweep.sh` / `run_block_sweep_partial.sh` to resume.
+
+**Table 4: speedup over serial, by block shape and grid size**
+
+| Block | Grid (N) | Integrated | MDH alone | MDA alone | Max error vs. exact |
+|---|---|---|---|---|---|
+| 32x32 | 64 | 2.73x | 2.75x | 2.92x | 4.608e-06 |
+| 32x32 | 128 | 10.69x | 11.68x | 12.86x | 5.054e-06 |
+| 32x32 | 256 | 17.93x | 18.23x | 19.91x | 5.050e-06 |
+| 32x32 | 512 | 19.42x | 19.21x | 20.68x | 5.057e-06 |
+| 32x32 | 1024 | 21.25x | 21.27x | 23.47x | 5.065e-06 |
+| 16x32 | 64 | 3.74x | 3.72x | 3.67x | 4.608e-06 |
+| 16x32 | 128 | 11.69x | 12.53x | 12.77x | 5.054e-06 |
+| 16x32 | 256 | 23.27x | 23.49x | 21.66x | 5.050e-06 |
+| 16x32 | 512 | 24.33x | 24.32x | 24.43x | 5.057e-06 |
+| 16x32 | 1024 | - | - | - | not yet measured (GPU down) |
+| 16x16 | 64 | 4.20x | 4.24x | 4.10x | 4.608e-06 |
+| 16x16 | 128 | 11.85x | 12.73x | 12.51x | 5.054e-06 |
+| 16x16 | 256 | 23.13x | 23.10x | 21.24x | 5.050e-06 |
+| 16x16 | 512 | 24.55x | 24.53x | 24.28x | 5.057e-06 |
+| 16x16 | 1024 | - | - | - | not yet measured (GPU down) |
+| 16x8 | 64 | 4.19x | 4.23x | 4.13x | 4.608e-06 |
+| 16x8 | 128 | 11.93x | 12.49x | 12.67x | 5.054e-06 |
+| 16x8 | 256 | 22.91x | 22.71x | 20.92x | 5.050e-06 |
+| 16x8 | 512 | 24.46x | 24.52x | 24.62x | 5.057e-06 |
+| 16x8 | 1024 | - | - | - | not yet measured (GPU down) |
+
+**Observation.** The smaller tiles (16x16, 16x8) consistently beat the original 32x32 tile at small-to-mid grid sizes, e.g. roughly 4.2x vs. 2.7x at N=64, most likely because a 16-row tile leaves more concurrent blocks resident per SM at these sizes. The gap narrows by N=512, where all four block shapes converge to roughly 24x; 32x32 is the only shape measured at N=1024 so far, where its speedup over serial grows to 21-23x. The error vs. the exact analytic solution is essentially flat (~5e-6) across every grid size and block shape tested, confirming block shape is a pure performance lever here with no accuracy cost.
+
+Raw data: `bench/sweep_results.csv` (block 32x32 complete through N=1024; block 16x32 complete through N=512), `bench/sweep_results_partial.csv` (all four block shapes, N=64-512). Full run log: `bench/sweep_log.txt` (includes the CUDA errors from the GPU corruption, at the point the sweep stopped).
 
 ## Reproducing the results
 
