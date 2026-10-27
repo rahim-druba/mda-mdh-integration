@@ -59,7 +59,7 @@ See `diagrams/pipeline.puml` for the full component diagram (what the pieces are
 | `bench/test_poisson_mda.cu` | The same serial baseline and test harness as above, driving MDA's naive kernel instead. |
 | `bench/bench_gpu_sweep_mda.cu`, `bench/bench_gpu_sweep_mdh.cu` | GPU-only harnesses used by the block-size sweep below; same kernels as above, but the CUDA block shape is overridable at compile time instead of fixed. |
 | `bench/serial_cache_gen.cc`, `bench/serial_cache_NX*.txt` | One-time-per-grid-size serial baseline, cached so the sweep does not re-run the O(N^4) serial solver for every block configuration. |
-| `bench/run_block_sweep.sh`, `bench/run_block_sweep_partial.sh` | Driver scripts for the block-size sweep; write `bench/sweep_results*.csv` and `bench/sweep*log.txt`. |
+| `bench/run_block_sweep.sh`, `bench/run_block_sweep_partial.sh`, `bench/run_block_sweep_remaining.sh` | Driver scripts for the block-size sweep; write `bench/sweep_results*.csv` and `bench/sweep*log.txt`. The `_remaining` script fills in specific missing (N, block) rows by appending, instead of re-running the whole sweep. |
 | `CMakeLists.txt` | Builds the bridge's output against `mdh_framework/`. |
 | `diagrams/pipeline.puml` | Component and activity diagrams of the pipeline, in PlantUML source. |
 
@@ -189,7 +189,7 @@ Separate from the fixed-block-size results above, a second sweep tests four CUDA
 
 **Error column.** `Max error vs. exact` is the largest pointwise difference between the GPU's converged solution and the problem's known analytic solution u(x,y) = x(1-x)y(1-y), taken over every interior grid point. It is the same value for all three kernels at a given (N, block) pair, since all three converge to the same residual (EPS = 1e-4) - it reflects the Jacobi method's discretization error at that grid resolution, not a difference between kernels or a GPU-vs-serial correctness gap (that comparison is the ~1e-16-level "Max diff GPU vs. serial" discussed above).
 
-**Status: 51 of 60 planned data points measured.** The remaining 9 (block 16x32, 16x16, and 16x8, each at N=1024) are missing because a GPU run stalled mid-sweep and had to be force-killed, which corrupted the CUDA context; the GPU could not run any CUDA program afterward. These rows will be filled in once the GPU is reset or rebooted - see `bench/run_block_sweep.sh` / `run_block_sweep_partial.sh` to resume.
+**Status: 60 of 60 planned data points measured - sweep complete.** An earlier run stalled mid-sweep and had to be force-killed, which corrupted the CUDA context (block 16x32, 16x16, and 16x8 at N=1024 were missing as a result); the GPU was reset and the missing 9 rows were measured afterward with the same harness, so the full grid is now filled in.
 
 **Table 4: speedup over serial, by block shape and grid size**
 
@@ -204,21 +204,23 @@ Separate from the fixed-block-size results above, a second sweep tests four CUDA
 | 16x32 | 128 | 11.69x | 12.53x | 12.77x | 5.054e-06 |
 | 16x32 | 256 | 23.27x | 23.49x | 21.66x | 5.050e-06 |
 | 16x32 | 512 | 24.33x | 24.32x | 24.43x | 5.057e-06 |
-| 16x32 | 1024 | - | - | - | not yet measured (GPU down) |
+| 16x32 | 1024 | 26.84x | 26.81x | 26.80x | 5.065e-06 |
 | 16x16 | 64 | 4.20x | 4.24x | 4.10x | 4.608e-06 |
 | 16x16 | 128 | 11.85x | 12.73x | 12.51x | 5.054e-06 |
 | 16x16 | 256 | 23.13x | 23.10x | 21.24x | 5.050e-06 |
 | 16x16 | 512 | 24.55x | 24.53x | 24.28x | 5.057e-06 |
-| 16x16 | 1024 | - | - | - | not yet measured (GPU down) |
+| 16x16 | 1024 | 26.86x | 26.85x | 26.84x | 5.065e-06 |
 | 16x8 | 64 | 4.19x | 4.23x | 4.13x | 4.608e-06 |
 | 16x8 | 128 | 11.93x | 12.49x | 12.67x | 5.054e-06 |
 | 16x8 | 256 | 22.91x | 22.71x | 20.92x | 5.050e-06 |
 | 16x8 | 512 | 24.46x | 24.52x | 24.62x | 5.057e-06 |
-| 16x8 | 1024 | - | - | - | not yet measured (GPU down) |
+| 16x8 | 1024 | 26.85x | 26.84x | 26.83x | 5.065e-06 |
 
-**Observation.** The smaller tiles (16x16, 16x8) consistently beat the original 32x32 tile at small-to-mid grid sizes, e.g. roughly 4.2x vs. 2.7x at N=64, most likely because a 16-row tile leaves more concurrent blocks resident per SM at these sizes. The gap narrows by N=512, where all four block shapes converge to roughly 24x; 32x32 is the only shape measured at N=1024 so far, where its speedup over serial grows to 21-23x. The error vs. the exact analytic solution is essentially flat (~5e-6) across every grid size and block shape tested, confirming block shape is a pure performance lever here with no accuracy cost.
+**Observation.** The smaller tiles (16x16, 16x8) consistently beat the original 32x32 tile at small-to-mid grid sizes, e.g. roughly 4.2x vs. 2.7x at N=64, most likely because a 16-row tile leaves more concurrent blocks resident per SM at these sizes. By N=1024, all three non-32x32 shapes converge to essentially the same speedup (~26.8x) regardless of kernel, while 32x32 lags behind at 21-23x for every kernel - so the smaller tiles are the better choice across the board at the largest grid size, not just at small N. The error vs. the exact analytic solution is essentially flat (~5e-6) across every grid size and block shape tested, confirming block shape is a pure performance lever here with no accuracy cost.
 
-Raw data: `bench/sweep_results.csv` (block 32x32 complete through N=1024; block 16x32 complete through N=512), `bench/sweep_results_partial.csv` (all four block shapes, N=64-512). Full run log: `bench/sweep_log.txt` (includes the CUDA errors from the GPU corruption, at the point the sweep stopped).
+**Why MDA alone edges out MDH alone specifically at the 32x32 block shape (and nowhere else).** Looking only at MDA alone vs. MDH alone: at 32x32, MDA is ahead at every single grid size, by 6-10% - large enough to be a real effect, not noise (the Legend above treats gaps under the 1-4% run-to-run jitter as "tied"; this one is clearly outside that band). At every other block shape (16x32, 16x16, 16x8), the two are tied within 0.04-1%, or MDH is slightly ahead - so this is not a general "MDA beats MDH" result, it is specific to one block shape. The likely mechanism: 32x32 is 1024 threads per block, the hardware maximum on this GPU, which leaves very few blocks resident per SM at once. MDH's kernel pays an up-front cost at every block - staging the tile and its halo into shared memory, then a `__syncthreads()` barrier - to earn back reuse on later reads. At this occupancy floor there are not enough concurrent blocks to hide that staging cost, so the shared-memory kernel actually loses to MDA's kernel, which does no staging and simply relies on the GPU's L1/L2 cache for neighbor reads regardless of block shape. The moment the block shrinks below the maximum, more blocks fit per SM, the staging cost is hidden again, and MDH ties or wins - consistent with every other row in Table 4, and with the main Results section's discussion of why MDH's shared-memory staging only pays off once there is enough resident work to hide it.
+
+Raw data, split across two files that together cover all 60 rows in Table 4: `bench/sweep_results.csv` (block 32x32 and 16x32 complete for all five grid sizes, plus 16x16 and 16x8 at N=1024 only) and `bench/sweep_results_partial.csv` (16x16 and 16x8 for N=64-512, from an earlier, independent run of that subset). Full run logs: `bench/sweep_log.txt` (the original run, including the CUDA errors from the GPU corruption at the point it stopped) and `bench/sweep_remaining_log.txt` / `sweep_remaining_stdout.txt` (the 9 rows measured after the GPU was reset).
 
 ## Reproducing the results
 

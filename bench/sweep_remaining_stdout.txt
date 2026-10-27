@@ -1,0 +1,1547 @@
+[1/9] N=1024 block=16x32 kernel=integrated
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+[2/9] N=1024 block=16x32 kernel=mdh_alone
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+[3/9] N=1024 block=16x32 kernel=mda
+[4/9] N=1024 block=16x16 kernel=integrated
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+[5/9] N=1024 block=16x16 kernel=mdh_alone
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+[6/9] N=1024 block=16x16 kernel=mda
+[7/9] N=1024 block=16x8 kernel=integrated
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+[8/9] N=1024 block=16x8 kernel=mdh_alone
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4209): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4209): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4210): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4211): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4212): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(4213): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5204): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5205): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5207): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(5208): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7202): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7202): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7203): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7204): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7205): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(7206): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8197): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8197): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8198): warning #68-D: integer conversion resulted in a change of sign
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8199): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8200): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+generated/handwritten/poisson_1.cu(8201): warning #186-D: pointless comparison of unsigned integer with zero
+
+[9/9] N=1024 block=16x8 kernel=mda
+=== DONE === appended 9 rows to bench/sweep_results.csv
+37 bench/sweep_results.csv
